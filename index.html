@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Magpiary</title>
+<meta name="description" content="Every reel you saved, finally findable, private on your own Mac.">
+<meta name="theme-color" content="#0C0C5A">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Magpiary">
+<meta property="og:title" content="Magpiary: saved is not the same as found">
+<meta property="og:description" content="Every reel you saved, finally findable, private on your own Mac.">
+<meta property="og:url" content="https://magpiary.com/">
+<meta property="og:image" content="https://magpiary.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Magpiary: saved is not the same as found">
+<meta name="twitter:description" content="Every reel you saved, finally findable, private on your own Mac.">
+<meta name="twitter:image" content="https://magpiary.com/og-image.png">
+
+<link rel="preload" href="fonts.css" as="style"><link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div id="load" aria-hidden="true"><div id="pill"></div><b id="count">0</b></div>
+<svg id="cur" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0 L33 23 L56 28 L33 33 L28 56 L23 33 L0 28 L23 23Z"/></svg>
+
+<div id="navfade" aria-hidden="true"></div>
+<header class="nav" id="nav">
+  <a href="#top" class="logo" data-logo aria-label="Magpiary"></a>
+  <nav class="links"><a href="#how">How it works</a><a href="#features">Features</a><a href="#privacy">Privacy</a><a href="#faq">FAQ</a></nav>
+  <a href="https://github.com/magpiary/magpiary" class="navcta" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57l-.02-2.2c-3.34.72-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.500 11.500 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .32.21.69.82.57A12 12 0 0 0 12 .3"/></svg>GitHub</a>
+</header>
+
+<main id="top">
+<section class="hero" id="hero">
+  <div class="layers" id="layers" aria-hidden="true">
+    <img decoding="async" class="fl" src="art/item-01.webp" alt="" data-d="1.3" data-dx="-1" style="left:6%;top:17%;width:clamp(60px,7.6vw,145px);rotate:-8deg">
+    <img decoding="async" class="fl" src="art/item-04.webp" alt="" data-d="1" data-dx="-1" style="left:17%;top:45%;width:clamp(38px,3.9vw,75px);rotate:-6deg">
+    <img decoding="async" class="fl" src="art/item-03.webp" alt="" data-d=".8" data-dx="-1" style="left:3%;top:48%;width:clamp(42px,4.8vw,88px);rotate:8deg">
+    <img decoding="async" class="fl" src="art/item-02.webp" alt="" data-d="1.2" data-dx="1" style="right:7%;top:15%;width:clamp(50px,6vw,112px);rotate:9deg">
+    <img decoding="async" class="fl" src="art/item-07.webp" alt="" data-d=".9" data-dx="1" style="right:12%;top:42%;width:clamp(56px,6vw,119px);rotate:-5deg">
+    <img decoding="async" class="fl" src="art/item-06.webp" alt="" data-d="1.5" data-dx="1" style="right:3%;top:48%;width:clamp(38px,4.1vw,78px);rotate:7deg">
+  </div>
+  <div class="herotext" id="herotext">
+    <h1>Saved is not the <br class="m">same <br class="d">as <span class="rot" id="rot">found</span>.</h1>
+    <p class="sub">Every reel you saved, finally findable, private on your own Mac.</p>
+    <div id="cta"></div>
+  </div>
+  <div class="herostage" id="herostage">
+    <div id="stagein">
+    <div id="bird"><img decoding="async" src="art/bird.webp" alt="An illustrated magpie perched on the app window"><i class="lid" style="left:13.4%;top:9.2%;width:6.8%;height:13.7%"></i><i class="lid" style="left:3.4%;top:29.2%;width:4.9%;height:11.4%"></i></div>
+    <div id="lander" aria-hidden="true"><img decoding="async" src="art/bird-a.webp" alt=""><img decoding="async" src="art/bird-b.webp" alt=""><img decoding="async" src="art/bird-c.webp" alt=""><img decoding="async" src="art/bird-d.webp" alt=""><img decoding="async" src="art/bird-l1.webp" alt=""><img decoding="async" src="art/bird-l2.webp" alt=""><img decoding="async" src="art/bird-l3.webp" alt=""><img decoding="async" src="art/bird-e.webp" alt=""><i class="lid" style="left:69.9%;top:57.8%;width:4.25%;height:5%"></i><i class="lid" style="left:76.3%;top:61.6%;width:1.4%;height:3.6%"></i></div>
+    <div class="win" id="herowin"><div class="bar"><i></i><i></i><i></i></div><img loading="lazy" decoding="async" src="screens/library.webp" alt="The Magpiary library, a grid of saved posts"></div>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="why"></section>
+
+<section class="how" id="how"></section>
+
+<section class="sec cen" id="features">
+  <h2 class="big" data-rise>Everything you saved, finally doing something.</h2>
+  <div class="tilts">
+    <article class="tilt" style="--c:#FFB020"><h3>Search by idea</h3><p>Find "that pasta with lemon" without the exact words. It searches what was said, shown and written.</p><img src="screens/search.webp" alt="Search results in Magpiary" loading="lazy"></article>
+    <article class="tilt" style="--c:#2EC4B6"><h3>Links, found</h3><p>Whatever a post mentions, Magpiary finds the link and checks that it works.</p><img src="screens/item.webp" alt="A saved post with its summary and links" loading="lazy"></article>
+    <article class="tilt" style="--c:#FF7A5C"><h3>Piles make themselves</h3><p>Saves gather by topic, with no AI key needed. Rename, merge or fix them any time.</p><img src="screens/piles.webp" alt="Piles in Magpiary" loading="lazy"></article>
+    <article class="tilt" style="--c:#B59CFF"><h3>A digest of you</h3><p>A look back at what you saved lately, and what you might act on.</p><img src="screens/digest.webp" alt="The Magpiary digest" loading="lazy"></article>
+    <article class="tilt" style="--c:#7FD6A0"><h3>Save from Chrome</h3><p>On your Mac, pick one post in a feed and save it. Nothing leaves your computer, and it never reads your cookies.</p><div class="mock ext" aria-label="The Magpiary extension in a Chrome window"><div class="cw"><div class="ctabs"><i></i><i></i><i></i><b class="ctab">Feed</b><span class="cplus">+</span></div><div class="ctool"><span class="cnav">&#8249; &#8250; &#8635;</span><span class="caddr">example.social/feed</span><span class="cicons"><u class="puz"></u><u class="mp"></u><u class="cdots">&#8942;</u></span></div><div class="cpage"><div class="cp"><i></i><b></b><b></b></div><div class="cp pk"><i></i><b></b><b></b></div><div class="cp"><i></i><b></b><b></b></div></div><div class="xp"><div class="xh"><span class="xlg"><img decoding="async" src="art/ext-icon.png" alt="">magpiary</span><span class="xon"><i></i>On this Mac</span></div><div class="xc"><span class="xk"><i></i>Web page</span><code>example.com/</code></div><div class="xl2">Board</div><div class="xs"><span><i></i>Just my library</span><u>&#8964;</u></div><div class="xn">+ Add note</div><div class="xsv">Save <kbd>&#8629;</kbd></div><div class="xft"><p><span><kbd>&#8679;&#8984;S</kbd> this panel</span><span><kbd>&#8679;&#8984;P</kbd> pick a post</span></p><p class="lk"><u>Open library</u><u>Change shortcuts</u><u>Unpair</u></p></div></div></div></div></article>
+    <article class="tilt" style="--c:#8DB8FF"><h3>Your AI can read it too</h3><p>A command line and an MCP server let Claude Code, Codex or any MCP app search your library. Off until you switch it on.</p><div class="mock cli" aria-label="Magpiary in the terminal"><pre><span class="d">$</span> magpiary search "lemon pasta" --json
+<span class="d">$</span> magpiary show 101
+<span class="d">$</span> magpiary mcp</pre><div class="tools"><span>Claude Code</span><span>Codex</span><span>Gemini CLI</span><span>Cursor</span><span>any MCP app</span></div></div></article>
+  </div>
+</section>
+
+<section class="sec cen" id="boards">
+  <h2 class="big" data-rise>Boards, for you or with friends.</h2>
+  <p class="lead">A place to gather posts for a project or a trip. Only board items ever leave your Mac.</p>
+  <div class="folders" id="folders"></div>
+</section>
+
+<section class="sec cen" id="privacy"></section>
+
+<section class="sec cen" id="nums"><h2 class="big" data-rise>The small print, made big.</h2><div class="stats" id="stats"></div></section>
+
+<section class="sec faqsec" id="faq"><h2 class="huh" data-rise>huh?</h2><div class="faq" id="faqs"></div></section>
+
+<section class="sec cen vision"><p data-rise>Magpiary wants to be the reference library for everything you collect online. Open source, so it can outlive anyone's plans.</p></section>
+
+<section class="end" id="install"><h2 data-rise>Bring your saves home.</h2><div id="cta2"></div></section>
+</main>
+<footer class="ft" id="foot">
+  <div class="ft-top">
+    <p class="ft-line">A magpie collects the shiny things. <em>So do you.</em></p>
+    <a class="ft-up" href="#top">Back to the nest <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+  <div class="ft-cols">
+    <nav aria-label="Product"><h3>Product</h3><a href="#how">How it works</a><a href="#features">Features</a><a href="#boards">Shared boards</a><a href="#privacy">Privacy</a><a href="#faq">FAQ</a></nav>
+    <nav aria-label="Project"><h3>Project</h3><a href="https://github.com/magpiary/magpiary" target="_blank" rel="noopener">Source on GitHub</a><a href="https://github.com/magpiary/magpiary/releases/latest" target="_blank" rel="noopener">Latest release</a><a href="https://github.com/magpiary/magpiary/issues" target="_blank" rel="noopener">Report a bug</a><a href="https://github.com/magpiary/magpiary/blob/main/LICENSE" target="_blank" rel="noopener">MIT licence</a></nav>
+    <div class="ft-mail"><h3>Say hello</h3><a class="ft-addr" href="mailto:contact@magpiary.com">contact@magpiary.com</a><p>Questions, bugs, ideas. It lands in a real inbox.</p></div>
+  </div>
+  <div class="ft-word" aria-hidden="true"><span>M</span><span>a</span><span>g</span><span>p</span><span>i</span><span>a</span><span>r</span><span>y</span><i style="--x:6%;--y:22%;--s:16px;--d:0s"></i><i style="--x:21%;--y:58%;--s:10px;--d:1.3s"></i><i style="--x:33%;--y:16%;--s:12px;--d:0.6s"></i><i style="--x:47%;--y:64%;--s:18px;--d:2.1s"></i><i style="--x:58%;--y:24%;--s:9px;--d:0.9s"></i><i style="--x:71%;--y:52%;--s:14px;--d:1.7s"></i><i style="--x:84%;--y:18%;--s:17px;--d:0.3s"></i><i style="--x:93%;--y:60%;--s:10px;--d:2.4s"></i></div>
+  <div class="ft-base"><span>© 2026 Magpiary</span><span>Open source · No cookies · No account · Your library stays on your Mac</span></div>
+</footer>
+
+<div class="review" id="review" aria-label="Compare options"></div>
+
+<script defer src="vendor/gsap.min.js"></script>
+<script defer src="vendor/ScrollTrigger.min.js"></script>
+<script defer src="vendor/lenis.min.js"></script>
+<script defer src="tiles-data.js"></script>
+<script defer src="site.js"></script>
+</body>
+</html>

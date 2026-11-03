@@ -1,0 +1,78 @@
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Redeploy even if the release is unchanged"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+env:
+  APP_REPO: magpiary/magpiary
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Find latest release
+        id: rel
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag=$(gh api repos/$APP_REPO/releases/latest --jq .tag_name)
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          live=$(curl -fsS "https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}/latest.json" 2>/dev/null | jq -r .tag 2>/dev/null || true)
+          echo "live=$live"
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$live" = "$tag" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "Release $tag already live, nothing to do."
+          fi
+
+      - name: Download the disk image
+        if: steps.rel.outputs.skip != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p downloads
+          gh release download "${{ steps.rel.outputs.tag }}" -R "$APP_REPO" --pattern '*.dmg' --dir downloads
+          gh release download "${{ steps.rel.outputs.tag }}" -R "$APP_REPO" --pattern 'SHA256SUMS*' --dir downloads || true
+          f=$(ls downloads/*.dmg | head -n1)
+          mv "$f" downloads/Magpiary.dmg
+          size=$(stat -c %s downloads/Magpiary.dmg)
+          sha=$(sha256sum downloads/Magpiary.dmg | cut -d' ' -f1)
+          jq -n --arg tag "${{ steps.rel.outputs.tag }}" --arg sha "$sha" --argjson size "$size" \
+            '{tag:$tag,sha256:$sha,size:$size}' > latest.json
+          cat latest.json
+
+      - name: Keep repo-only files out of the site
+        if: steps.rel.outputs.skip != 'true'
+        run: rm -rf .git .github
+
+      - uses: actions/configure-pages@v5
+        if: steps.rel.outputs.skip != 'true'
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.rel.outputs.skip != 'true'
+        with:
+          path: .
+      - id: deployment
+        if: steps.rel.outputs.skip != 'true'
+        uses: actions/deploy-pages@v4
