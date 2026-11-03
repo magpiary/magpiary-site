@@ -16,8 +16,49 @@ const SEARCH='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11
 /* two pill buttons with the install command below */
 const APPLE='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.54c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.09-2.01-3.76-2.04-1.6-.16-3.12.94-3.93.94-.81 0-2.06-.92-3.39-.89-1.74.03-3.35 1.01-4.25 2.57-1.81 3.14-.46 7.8 1.3 10.35.86 1.25 1.89 2.65 3.24 2.6 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.02 2.28-1.27 3.14-2.53.99-1.45 1.4-2.85 1.42-2.92-.03-.01-2.72-1.04-2.74-4.14zM14.47 4.9c.72-.87 1.2-2.08 1.07-3.28-1.03.04-2.28.69-3.02 1.55-.66.77-1.24 1.99-1.09 3.17 1.15.09 2.32-.58 3.04-1.44z"/></svg>';
 const GH='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.34.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>';
-const CTA=`<div class="ctawrap"><div class="ctas"><a class="btn main" href="downloads/Magpiary.dmg" download>${APPLE}Download for Mac</a><a class="btn alt" href="https://github.com/magpiary/magpiary">${GH}View on GitHub</a></div></div>`;
+/* Magpiary is a Mac app: phones and tablets get a note instead of a download button */
+const NOMAC=matchMedia('(hover:none) and (pointer:coarse)').matches||/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+const GHBTN=`<a class="btn alt" href="https://github.com/magpiary/magpiary" target="_blank" rel="noopener">${GH}View on GitHub</a>`;
+const CTA=NOMAC
+  ?`<div class="ctawrap"><div class="ctas">${GHBTN}</div><p class="ctanote">Magpiary runs on your Mac. Open <b>magpiary.com</b> there to download it.</p></div>`
+  :`<div class="ctawrap"><div class="ctas"><a class="btn main" href="downloads/Magpiary.dmg" download>${APPLE}Download for Mac</a>${GHBTN}</div></div>`;
 $('#cta').innerHTML=$('#cta2').innerHTML=CTA;
+
+/* Download for Mac: the button reacts the instant it is clicked, then a short dialog says how to open an unsigned app */
+(function(){
+  const CHECK='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const dlg=document.createElement('dialog');dlg.className='dl';dlg.setAttribute('aria-labelledby','dl-t');
+  dlg.innerHTML=`<div class="dl-stat" id="dl-stat" role="status"><span class="spin" aria-hidden="true"></span><b>Starting your download…</b></div>
+  <h2 id="dl-t">Before you open Magpiary</h2>
+  <p class="dl-lead">Magpiary isn't signed with a paid Apple account, so macOS stops the first launch. It is safe to open. Here is how:</p>
+  <ol class="dl-steps">
+    <li><b>Open the disk image</b> from your Downloads folder and drag Magpiary into Applications.</li>
+    <li><b>Open Magpiary</b> from Applications. macOS says it can't check it. That is expected.</li>
+    <li><b>Allow it once.</b> Open System Settings, go to Privacy &amp; Security, scroll to the bottom and click <b>Open Anyway</b> next to Magpiary. Enter your password.</li>
+  </ol>
+  <p class="dl-tip">On an older Mac you can instead right-click Magpiary, choose <b>Open</b>, then <b>Open</b> again.</p>
+  <p class="dl-tip">The first launch downloads about 720 MB of tools and models, then opens setup in your browser.</p>
+  <div class="dl-foot"><a class="dl-again" href="downloads/Magpiary.dmg" download>Download didn't start? Try again</a><button class="btn main" type="button" data-close>Got it</button></div>`;
+  document.body.append(dlg);
+  const stat=dlg.querySelector('#dl-stat');
+  const SPIN='<span class="spin" aria-hidden="true"></span><b>Starting your download…</b>';
+  const later=setTimeout;
+  document.addEventListener('click',e=>{
+    const b=e.target.closest('.btn.main[download]');
+    if(!b)return;
+    if(b.classList.contains('busy')){e.preventDefault();return}       /* no second download from a double click */
+    const label=b.innerHTML;
+    b.classList.add('busy');b.setAttribute('aria-busy','true');
+    b.innerHTML='<span class="spin" aria-hidden="true"></span>Starting download…';
+    stat.innerHTML=SPIN;
+    later(()=>{if(!dlg.open)dlg.showModal()},450);
+    later(()=>{stat.innerHTML=CHECK+'<b>Download started. Look in your Downloads folder.</b>'},2400);
+    later(()=>{b.classList.remove('busy');b.removeAttribute('aria-busy');b.innerHTML=label},3200);
+  });
+  dlg.addEventListener('click',e=>{if(e.target===dlg||e.target.closest('[data-close]'))dlg.close()});
+  /* watch the open attribute: it changes however the dialog is closed (button, click outside, Escape) */
+  new MutationObserver(()=>document.documentElement.classList.toggle('dl-open',dlg.open)).observe(dlg,{attributes:true,attributeFilter:['open']});
+})();
 /* the same bird lands on the first button in the footer section */
 (function(){const a=$('#cta2 .ctas>*');if(!a)return;const w=document.createElement('span');w.className='perchw';a.parentNode.insertBefore(w,a);w.append(a);const hero=$('#lander').cloneNode(true);hero.removeAttribute('id');hero.classList.add('lander2');w.append(hero)})();
 
