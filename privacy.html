@@ -1,0 +1,54 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Privacy · Magpiary</title>
+<link rel="icon" href="favicon-32.png"><link rel="stylesheet" href="fonts.css">
+<style>
+:root{--cream:#F7F3E8;--mut:rgba(247,243,232,.78);--line:rgba(247,243,232,.18);--ink:#0B0B22;--gold:#FFD27A}
+*{box-sizing:border-box}html{background:#0B0B4E}
+body{margin:0;color:var(--cream);font:18px/1.6 'Varela Round',system-ui,sans-serif;-webkit-font-smoothing:antialiased;padding:32px max(20px,env(safe-area-inset-left)) 80px}
+main{max-width:720px;margin:0 auto}
+a{color:var(--gold)}
+.back{display:inline-block;margin-bottom:36px;color:var(--mut);text-decoration:none;font-size:15px}.back:hover{color:var(--cream)}
+h1{font:800 clamp(36px,6vw,52px)/1.05 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em;margin:0 0 8px}
+h2{font:700 24px/1.2 'Quicksand',system-ui,sans-serif;margin:40px 0 10px}
+p,li{color:var(--mut)}li{margin:6px 0}ul{padding-left:22px}
+.date{color:var(--mut);font-size:15px;margin:0 0 28px}
+.lede{color:var(--cream);font-size:20px}
+table{width:100%;border-collapse:collapse;font-size:16px;margin:12px 0}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line);color:var(--mut)}th{color:var(--cream);width:30%}
+</style></head><body><main>
+<a class="back" href="/">&larr; magpiary.com</a>
+<h1>Privacy</h1>
+<p class="date">Last updated 3 November 2026</p>
+<p class="lede">Magpiary keeps what you save on your own Mac. It has no accounts, no servers that receive your data, no analytics and no ads. This page covers the Magpiary website, the Magpiary Chrome extension and the Magpiary app.</p>
+
+<h2>The Chrome extension</h2>
+<p>The extension has one purpose: to save the page or post you are looking at to your Magpiary library on your own computer.</p>
+<table>
+<tr><th>What it handles</th><td>The web address of the page or post you choose to save, and the board and note you type, if any. Tracking parameters (such as share IDs and utm_ values) are removed from the address first.</td></tr>
+<tr><th>When</th><td>Only when you click the Magpiary button, press its keyboard shortcut, or use "Save to Magpiary" in the right-click menu. It does nothing in the background except retry a save that could not be delivered yet.</td></tr>
+<tr><th>Where it goes</th><td>Only to the Magpiary app on the same computer, over the local address 127.0.0.1. It is never sent to the Magpiary developers or to any other server.</td></tr>
+<tr><th>What it never does</th><td>It does not read cookies, passwords, page text or your browsing history. It makes no requests to the websites you visit. It runs no code loaded from the internet.</td></tr>
+<tr><th>What it stores</th><td>In your browser only: the pairing with your Mac, the local port, and any saves waiting to be delivered. Unpairing or removing the extension deletes them.</td></tr>
+</table>
+<h2>Why each permission is needed</h2>
+<ul>
+<li><b>activeTab</b> and <b>scripting</b>: to read the address of the current tab, and to run the extension's own bundled "pick a post" script there, only after you ask.</li>
+<li><b>contextMenus</b>: for the right-click "Save to Magpiary" item.</li>
+<li><b>storage</b> and <b>alarms</b>: to remember the pairing and to retry a waiting save.</li>
+<li><b>Access to 127.0.0.1</b>: to hand the save to the Magpiary app on your computer.</li>
+</ul>
+
+<h2>Chrome Web Store user data policy</h2>
+<p>The use of information received by the Magpiary extension adheres to the <a href="https://developer.chrome.com/docs/webstore/program-policies/user-data-faq">Chrome Web Store User Data Policy</a>, including the Limited Use requirements. The extension uses the web addresses you choose to save only to provide its one purpose, never sells or transfers them, and never uses them for advertising or for any other purpose.</p>
+
+<h2>The Magpiary app</h2>
+<p>The app stores your library in one folder on your Mac. Nothing is uploaded to us. If you choose Smart mode, the caption, transcript and a few frames of a saved post are sent to the AI service whose key you supply (for example Google, Anthropic or OpenAI), under that service's own terms. Videos never leave your Mac. In Private mode nothing is sent to any AI service. Your keys are kept on your Mac and never shown again.</p>
+
+<h2>This website</h2>
+<p>magpiary.com sets no cookies and runs no analytics. It is hosted on GitHub Pages, which may keep ordinary server logs under GitHub's own privacy statement.</p>
+
+<h2>What we collect</h2>
+<p>Nothing. The Magpiary developers receive no data from the extension, the app or this site. Because of that we cannot see, sell or share your saves.</p>
+
+<h2>Questions</h2>
+<p>Write to <a href="mailto:contact@magpiary.com">contact@magpiary.com</a>. If this policy changes, the date above changes with it. Magpiary is open source, so you can read exactly what the extension and the app do: <a href="https://github.com/magpiary/magpiary">github.com/magpiary/magpiary</a>.</p>
+</main></body></html>
