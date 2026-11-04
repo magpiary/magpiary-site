@@ -1,0 +1,28 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Page not found · Magpiary</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon-32.png"><link rel="stylesheet" href="/fonts.css">
+<style>
+:root{--cream:#F7F3E8;--mut:rgba(247,243,232,.78);--line:rgba(247,243,232,.18);--gold:#FFD27A}
+*{box-sizing:border-box}html{background:#0B0B4E}
+body{margin:0;min-height:100vh;min-height:100svh;display:grid;place-items:center;color:var(--cream);
+  font:18px/1.6 'Varela Round',system-ui,sans-serif;-webkit-font-smoothing:antialiased;
+  padding:32px max(20px,env(safe-area-inset-left)) 48px;overflow-x:hidden}
+main{max-width:560px;text-align:center}
+.bird{width:min(360px,80vw);height:auto;margin:-60px auto 8px;display:block;animation:fly 6s ease-in-out infinite}
+@keyframes fly{0%,100%{transform:translate(0,0) rotate(-2deg)}50%{transform:translate(10px,-14px) rotate(2deg)}}
+@media (prefers-reduced-motion:reduce){.bird{animation:none}}
+.code{font:700 15px/1 'Quicksand',system-ui,sans-serif;letter-spacing:.2em;color:var(--gold);margin:0 0 10px}
+h1{font:800 clamp(34px,7vw,52px)/1.05 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em;margin:0 0 14px}
+p{color:var(--mut);margin:0 0 28px}
+.go{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.btn{display:inline-flex;align-items:center;padding:12px 22px;border-radius:999px;font:700 16px/1 'Quicksand',system-ui,sans-serif;
+  text-decoration:none;color:#0B0B22;background:var(--cream);transition:transform .15s ease}
+.btn:hover{transform:translateY(-1px)}.btn:active{transform:scale(.97)}
+.btn.ghost{background:transparent;color:var(--cream);border:1px solid var(--line)}
+</style></head><body><main>
+<img class="bird" src="/art/bird-l1.webp" alt="" width="1200" height="1000">
+<p class="code">404</p>
+<h1>This page flew off</h1>
+<p>A magpie must have taken it somewhere. The address may be old, or have a typo in it.</p>
+<div class="go"><a class="btn" href="/">Go to magpiary.com</a><a class="btn ghost" href="https://github.com/magpiary/magpiary">Magpiary on GitHub</a></div>
+</main></body></html>
