@@ -784,3 +784,7 @@ html.dl-open main,html.dl-open .ft,html.dl-open .nav{visibility:hidden}
 .ctanote{margin:16px 0 0;max-width:22em;text-align:center;font-size:15px;color:var(--mut)}.ctanote b{color:var(--cream)}
 
 .ft-base a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(247,243,232,.4)}.ft-base a:hover{text-decoration-color:currentColor}
+/* plain-text summary for readers and search engines */
+.about{max-width:760px;margin:auto}.about h2{font:700 clamp(28px,3.4vw,44px)/1.15 var(--head);margin:0 0 20px}
+.about p{font:400 clamp(16px,1.35vw,19px)/1.65 var(--body);color:var(--mut);margin:0 0 16px}
+.about a{color:var(--cream);text-underline-offset:3px}
