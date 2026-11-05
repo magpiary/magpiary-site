@@ -462,7 +462,7 @@ const WORDSET=[['found','#FFB020'],[SMALL?'known':'understood','#5CE6B0'],['lear
 (function(){const box=$('#rot'),h=$('#hero h1');h.setAttribute('aria-label','Saved is not the same as found.');
   /* phones: two lines, always. The size comes from the screen width and the longest word */
   if(SMALL){const fit=()=>{const c=getComputedStyle(h),x=document.createElement('canvas').getContext('2d');x.font=`${c.fontWeight} 100px ${c.fontFamily}`;const w=t=>x.measureText(t).width,
-      widest=Math.max(w('Saved is not the'),...WORDSET.map(e=>w('same as '+e[0]+'.')));h.style.fontSize=Math.min(56,Math.floor((innerWidth-44)/widest*100))+'px'};fit();document.fonts&&document.fonts.ready.then(fit);addEventListener('resize',fit)}
+      widest=Math.max(w('Saved is not'),w('the same as'),...WORDSET.map(e=>w(e[0]+'.')));h.style.fontSize=Math.min(56,Math.floor((innerWidth-44)/widest*100))+'px'};fit();document.fonts&&document.fonts.ready.then(fit);addEventListener('resize',fit)}
   box.innerHTML=WORDSET.map(w=>`<span class="w" style="color:${w[1]}">${[...w[0]].map(l=>`<i>${l}</i>`).join('')}</span>`).join('');
   const W=$$('.w',box);let k=0;
   const fit=()=>{const f=W[k];box.style.width=f.offsetWidth+'px'};gsap.set(W,{autoAlpha:0,xPercent:-50});gsap.set(W[0],{autoAlpha:1});fit();addEventListener('resize',fit);document.fonts&&document.fonts.ready.then(fit);

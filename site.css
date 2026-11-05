@@ -592,7 +592,10 @@ body[data-view=beside] .aib:not(.pick){background:#17173c;color:rgba(247,243,232
 html.held,html.held body{overscroll-behavior:none}
 @media (max-width:760px){
   #hero h1{font-size:clamp(42px,11.6vw,56px);line-height:1.04}
-  #hero .sub{font-size:clamp(19px,5vw,23px);line-height:1.35}
+  #hero .sub{font-size:16px;line-height:1.4;margin-right:40px}
+  .herotext #cta{display:none}
+  .herotext br.m,.herotext br.d{display:none}
+  .herotext br.s1,.herotext br.s{display:inline}
 }
 html.held,html.held body{touch-action:none}
 @media (max-width:760px){.how{min-height:100svh}}
@@ -786,10 +789,17 @@ html.dl-open main,html.dl-open .ft,html.dl-open .nav{visibility:hidden}
 .ft-base a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(247,243,232,.4)}.ft-base a:hover{text-decoration-color:currentColor}
 
 br.s,br.s1{display:none}
+/* hero, phones and tablets (up to 900px): everything left-aligned, smaller subline (5 Nov) */
+@media (max-width:900px){
+  .herotext{align-items:flex-start;text-align:left}
+  .herotext #cta .ctawrap{align-items:flex-start}
+  .herotext #cta .ctas{justify-content:flex-start}
+  .herotext .ctanote{text-align:left}
+}
 /* hero split (5 Nov): desktop only. Headline on the left (two lines), subline and buttons on the right. Phones keep the centred layout. */
 @media (min-width:901px){
   .hero{--wintop:58svh}
-  .herotext{--hw:min(80vw,129svh);--hf:clamp(30px,calc(var(--hw)*.0607),120px);display:grid;grid-template-columns:max-content minmax(0,calc(var(--hw)*.40));justify-content:center;grid-template-rows:auto auto;align-content:center;align-items:stretch;column-gap:40px;row-gap:clamp(10px,2svh,22px);text-align:left;max-width:var(--hw);margin:0 auto;padding:0 0 calc(clamp(36px,9svh,96px) + 20px)}
+  .herotext{--hw:min(80vw,129svh);--hf:clamp(30px,calc(var(--hw)*.0607),120px);display:grid;grid-template-columns:max-content minmax(0,calc(var(--hw)*.40));justify-content:center;grid-template-rows:auto auto;align-content:center;align-items:stretch;column-gap:clamp(60px,var(--hf),120px);row-gap:clamp(10px,2svh,22px);text-align:left;max-width:var(--hw);margin:0 auto;padding:0 0 calc(clamp(36px,9svh,96px) + 20px)}
   .herotext h1{grid-row:1 / span 2;align-self:center;font-size:var(--hf);line-height:1.04;margin:0;white-space:nowrap}
   .herotext br.m{display:none}
   .herotext br.s1{display:inline}
