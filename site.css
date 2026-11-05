@@ -804,6 +804,8 @@ br.s,br.s1{display:none}
   .layers .fl:nth-child(5){top:47% !important}
   .layers .fl:nth-child(4){top:9% !important}
 }
+/* hero split: below ~1900px the headline reaches the left edge, so the purple play icon sits above it instead of on it */
+@media (min-width:901px) and (max-width:1899px){.layers .fl:nth-child(1){left:17% !important;top:1.5% !important}}
 /* plain-text summary for readers and search engines */
 .about{max-width:760px;margin:auto}.about h2{font:700 clamp(28px,3.4vw,44px)/1.15 var(--head);margin:0 0 20px}
 .about p{font:400 clamp(16px,1.35vw,19px)/1.65 var(--body);color:var(--mut);margin:0 0 16px}
