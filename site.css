@@ -784,6 +784,27 @@ html.dl-open main,html.dl-open .ft,html.dl-open .nav{visibility:hidden}
 .ctanote{margin:16px 0 0;max-width:22em;text-align:center;font-size:15px;color:var(--mut)}.ctanote b{color:var(--cream)}
 
 .ft-base a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(247,243,232,.4)}.ft-base a:hover{text-decoration-color:currentColor}
+
+br.s,br.s1{display:none}
+/* hero split (5 Nov): desktop only. Headline on the left (two lines), subline and buttons on the right. Phones keep the centred layout. */
+@media (min-width:901px){
+  .hero{--wintop:58svh}
+  .herotext{--hf:clamp(34px,min(5.6vw,8svh),120px);display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);grid-template-rows:auto auto;align-content:center;align-items:stretch;column-gap:clamp(28px,4vw,72px);row-gap:clamp(10px,2svh,22px);text-align:left;max-width:min(1380px,92vw);margin:0 auto;padding:0 0 calc(clamp(36px,9svh,96px) + 20px)}
+  .herotext h1{grid-row:1 / span 2;align-self:center;font-size:var(--hf);line-height:1.04;margin:0;white-space:nowrap}
+  .herotext br.m{display:none}
+  .herotext br.s1{display:inline}
+  .herotext .dot{display:none}
+  .herotext br.d{display:none}
+  .herotext br.s{display:inline}
+  .herotext .sub{grid-column:2;align-self:end;margin:0;max-width:30em}
+  .herotext #cta{grid-column:2;align-self:end;margin-bottom:calc(var(--hf) * .205)}
+  .herotext #cta .ctawrap{align-items:flex-start}
+  .herotext #cta .ctas{justify-content:flex-start}
+  .herotext #cta .btn{white-space:nowrap}
+  .layers .fl:nth-child(5){top:47% !important}
+  .layers .fl:nth-child(4){top:9% !important}
+  .layers .fl:nth-child(1){left:38% !important;top:19% !important}
+}
 /* plain-text summary for readers and search engines */
 .about{max-width:760px;margin:auto}.about h2{font:700 clamp(28px,3.4vw,44px)/1.15 var(--head);margin:0 0 20px}
 .about p{font:400 clamp(16px,1.35vw,19px)/1.65 var(--body);color:var(--mut);margin:0 0 16px}
